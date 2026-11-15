@@ -182,6 +182,15 @@ services:
       GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: ${MAILER_URLPATHS_EMAIL_CHANGE}
 
       GOTRUE_EXTERNAL_PHONE_ENABLED: ${ENABLE_PHONE_SIGNUP}
+
+      # CPO Control: sessão expira após 2 h sem uso e no máximo 12 h após o login
+      GOTRUE_SESSIONS_INACTIVITY_TIMEOUT: "2h"
+      GOTRUE_SESSIONS_TIMEBOX: "12h"
+      # CPO Control: modelos de e-mail com link /auth/confirm?token_hash= (servidos pela aplicação)
+      GOTRUE_MAILER_TEMPLATES_INVITE: "https://cpo.maissaudesst.digital/email-templates/invite.html"
+      GOTRUE_MAILER_TEMPLATES_RECOVERY: "https://cpo.maissaudesst.digital/email-templates/recovery.html"
+      GOTRUE_MAILER_SUBJECTS_INVITE: "Convite para o CPO Control"
+      GOTRUE_MAILER_SUBJECTS_RECOVERY: "Redefinição de senha - CPO Control"
       GOTRUE_SMS_AUTOCONFIRM: ${ENABLE_PHONE_AUTOCONFIRM}
       # Uncomment to enable OAuth / social login providers.
       # GOTRUE_EXTERNAL_GOOGLE_ENABLED: ${GOOGLE_ENABLED}
