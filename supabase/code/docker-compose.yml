@@ -496,6 +496,13 @@ services:
   db:
     image: supabase/postgres:15.8.1.085
     restart: unless-stopped
+    # CPO Control: o serviço "rotinas" (backup) roda na rede do Easypanel e precisa alcançar o banco.
+    # A porta continua sem publicação externa.
+    networks:
+      default:
+      easypanel:
+        aliases:
+          - cpo_supabase_db
     volumes:
       - ./volumes/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
       # Must be superuser to create event trigger
@@ -617,3 +624,7 @@ services:
 volumes:
   db-config:
   deno-cache:
+
+networks:
+  easypanel:
+    external: true
